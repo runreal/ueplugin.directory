@@ -1,9 +1,11 @@
 import { FancyButton } from "@/components/fancy-button"
+import { Footer } from "@/components/footer"
 import { PluginGrid } from "@/components/plugin-grid"
 import { Topbar } from "@/components/topbar"
 import { Button } from "@/components/ui/button"
 import { trpc } from "@/trpc/server"
 import { PlusIcon } from "lucide-react"
+import Image from "next/image"
 
 export default async function Home({
 	searchParams,
@@ -20,7 +22,7 @@ export default async function Home({
 			<Topbar search={search} />
 
 			<div className="w-full border-b border-foreground/20">
-				<div className="font-bold text-4xl py-12 px-8 max-w-[1200px] m-auto">
+				<div className="font-bold text-4xl py-18 px-8 max-w-[1200px] m-auto">
 					The open source Unreal Engine Plugin Registry
 				</div>
 			</div>
@@ -34,6 +36,17 @@ export default async function Home({
 				</div>
 				<PluginGrid plugins={data} />
 			</div>
+
+			<div className="flex flex-col items-center justify-center my-8">
+				<Image
+					alt="Runreal muted logo"
+					src={"/runreal_blueprint_light.png"}
+					width={1200}
+					height={200}
+					className="opacity-15"
+				/>
+			</div>
+			<Footer className="mt-8" />
 		</div>
 	)
 }

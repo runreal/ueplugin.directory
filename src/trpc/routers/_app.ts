@@ -13,6 +13,8 @@ export const appRouter = createTRPCRouter({
 				description: plugins.description,
 				status: plugins.status,
 				githubLicense: plugins.githubLicense,
+				githubPushedAt: plugins.githubPushedAt,
+				uePluginInfo: plugins.uePluginInfo,
 				githubStars: plugins.githubStars,
 				uePluginIcon: plugins.uePluginIcon,
 			})

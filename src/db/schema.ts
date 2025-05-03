@@ -2,14 +2,18 @@ import { sql } from "drizzle-orm"
 import { bigint, jsonb, pgTable, text, timestamp, uniqueIndex } from "drizzle-orm/pg-core"
 import { defaults } from "./typeid"
 
-export interface PluginModule {
+export interface UEModule {
 	Name: string
 	Type?: string
 	LoadingPhase?: string
 	WhitelistPlatforms?: string[]
 }
+export interface UEPlugin {
+	Name: string
+	Enabled: boolean
+}
 
-export interface PluginDescriptor {
+export interface UEPluginDescriptor {
 	FileVersion: number
 	Version: number
 	EngineVersion?: string
@@ -26,7 +30,10 @@ export interface PluginDescriptor {
 	CanContainContent?: boolean
 	IsBetaVersion?: boolean
 	Installed?: boolean
-	Modules?: PluginModule[]
+	IsExperimentalVersion?: boolean
+	SupportedTargetPlatforms?: string[] // [ "Win64", "Mac", "Linux", "Android", "IOS" ]
+	Modules?: UEModule[]
+	Plugins?: UEPlugin[]
 }
 
 export interface EngineVersion {
@@ -68,7 +75,7 @@ export const plugins = pgTable(
 		githubTopics: jsonb("github_topics").$type<string[]>(),
 		// ue info
 		uePluginFilePath: text("ue_plugin_file_path"), // path to the .uplugin file
-		uePluginInfo: jsonb("ue_plugin_info").$type<PluginDescriptor>(),
+		uePluginInfo: jsonb("ue_plugin_info").$type<UEPluginDescriptor>(),
 		uePluginIcon: text("ue_plugin_icon"), // Resources/Icon128.png
 		// engineVersions: jsonb("engine_versions").$type<EngineVersion[]>(),
 		// platforms: jsonb("platforms").$type<string[]>(),

@@ -1,0 +1,32 @@
+CREATE TABLE "plugins" (
+	"id" uuid PRIMARY KEY DEFAULT uuid_generate_v7() NOT NULL,
+	"created_at" timestamp DEFAULT timezone('utc', now()) NOT NULL,
+	"updated_at" timestamp DEFAULT timezone('utc', now()) NOT NULL,
+	"name" text NOT NULL,
+	"owner" text NOT NULL,
+	"description" text,
+	"status" text DEFAULT 'active',
+	"readme" text,
+	"readme_path" text,
+	"changelog" text,
+	"changelog_path" text,
+	"plugin_root" text,
+	"github_id" bigint NOT NULL,
+	"github_license" text,
+	"github_branch" text,
+	"github_stars" bigint,
+	"github_forks" bigint,
+	"github_website" text,
+	"github_pushed_at" timestamp,
+	"github_repo_icon" text,
+	"github_owner_avatar" text,
+	"github_topics" jsonb,
+	"ue_plugin_file_path" text,
+	"ue_plugin_info" jsonb,
+	"ue_plugin_icon" text,
+	"categories" jsonb,
+	"last_checked_commit" text,
+	"last_checked_at" timestamp DEFAULT timezone('utc', now()) NOT NULL
+);
+--> statement-breakpoint
+CREATE UNIQUE INDEX "plugins_github_id_idx" ON "plugins" USING btree ("github_id");

@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-	title: "RUNREAL plugins",
+	title: "Plugin Registry",
 	description: "",
 }
 

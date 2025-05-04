@@ -19,7 +19,13 @@ export default async function Home({
 
 	return (
 		<div>
-			<Topbar search={search} />
+			<img
+				src={"/grid.png"}
+				alt="grid"
+				className="absolute top-[-200px] left-[25%] w-[50%] h-full object-cover opacity-100 z-0"
+			/>
+
+			<Topbar search={search} className="z-1" />
 
 			<div className="w-full border-b border-foreground/20">
 				<div className="font-bold text-4xl py-18 px-8 max-w-[1200px] m-auto">
@@ -37,13 +43,18 @@ export default async function Home({
 				<PluginGrid plugins={data} />
 			</div>
 
-			<div className="flex flex-col items-center justify-center my-8">
+			<div className="flex flex-col items-center justify-center my-12 relative">
 				<Image
 					alt="Runreal muted logo"
 					src={"/runreal_blueprint_light.png"}
 					width={1200}
 					height={200}
 					className="opacity-15"
+				/>
+				<img
+					src={"/grid.png"}
+					alt="grid"
+					className="absolute top-0 left-[25%] w-[50%] h-full object-cover opacity-100 z-0"
 				/>
 			</div>
 			<Footer className="mt-8" />

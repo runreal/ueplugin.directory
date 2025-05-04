@@ -1,10 +1,11 @@
 "use client"
 
+import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import { Input } from "./ui/input"
 
-export function Topbar({ search }: { search?: string }) {
+export function Topbar({ search, className }: { search?: string; className?: string }) {
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	const [value, setValue] = useState(search || "")
@@ -45,7 +46,7 @@ export function Topbar({ search }: { search?: string }) {
 	}
 
 	return (
-		<div className="flex items-center justify-between p-4 px-6">
+		<div className={cn("flex items-center justify-between p-4 px-6", className)}>
 			<div className="w-[300px]">
 				<a href="/">
 					<Image src={"/logo_full.svg"} alt="Logo" width={150} height={64} className="" />

@@ -5,6 +5,7 @@ import { timeago } from "@/lib/timeago"
 import { StarIcon } from "lucide-react"
 import { Corner } from "./corner"
 import { Rating } from "./rating"
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 
 export function PluginGrid({ plugins }: { plugins: any[] }) {
 	return (
@@ -57,18 +58,29 @@ export function PluginGrid({ plugins }: { plugins: any[] }) {
 						</div>
 						<div className="flex justify-between items-center">
 							<div className="flex items-center">
-								<Rating
-									title={`License is ${ratingReasons[license.rating]}`}
-									rating={license.rating}
-									color={license.color}
-									className="h-[20px] w-[20px] mr-2 bg-background text-[10px]"
-								/>
-								<Rating
-									title={`Last commit ${timeago(plugin.githubPushedAt)}`}
-									rating={age.rating}
-									color={age.color}
-									className="h-[20px] w-[20px] mr-2 bg-background text-[10px]"
-								/>
+								<Tooltip>
+									<TooltipTrigger>
+										<Rating
+											title={`License is ${ratingReasons[license.rating] || "Unknown"}`}
+											rating={license.rating}
+											color={license.color}
+											className="h-[20px] w-[20px] mr-2 bg-background text-[10px]"
+										/>
+									</TooltipTrigger>
+									<TooltipContent>{`License is ${ratingReasons[license.rating] || "Unknown"}`}</TooltipContent>
+								</Tooltip>
+
+								<Tooltip>
+									<TooltipTrigger>
+										<Rating
+											title={`Last commit ${timeago(plugin.githubPushedAt)}`}
+											rating={age.rating}
+											color={age.color}
+											className="h-[20px] w-[20px] mr-2 bg-background text-[10px]"
+										/>
+									</TooltipTrigger>
+									<TooltipContent>{`Last commit ${timeago(plugin.githubPushedAt)}`}</TooltipContent>
+								</Tooltip>
 							</div>
 							<div className="flex items-center">
 								{plugin.uePluginInfo?.SupportedTargetPlatforms?.map((platform: string) => {

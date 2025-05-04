@@ -141,6 +141,7 @@ export const processPlugins = inngest.createFunction(
 					// githubStatus: data.archived ? "archived" : "active",
 					// githubRepoIcon: data.owner.avatar_url,
 					uePluginInfo: uePluginContentJson,
+					// @ts-ignore
 					uePluginIcon: uPluginIcon ? uPluginIcon.download_url : undefined,
 					uePluginFilePath: uPluginFile.path,
 					githubOwnerAvatar: data.owner.avatar_url,

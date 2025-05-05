@@ -20,7 +20,28 @@ import Markdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
 
-const disallowedElements = ["img"]
+const allowedElements = [
+	"p",
+	"strong",
+	"em",
+	"ul",
+	"ol",
+	"li",
+	"a",
+	"code",
+	"pre",
+	"blockquote",
+	"h1",
+	"h2",
+	"h3",
+	"h4",
+	"h5",
+	"h6",
+	"hr",
+	"br",
+	"div",
+]
+
 const markdownPlugins = [remarkGfm]
 const rehypePlugins = [rehypeRaw]
 
@@ -153,7 +174,7 @@ export default async function Page({
 							}}
 						>
 							<Markdown
-								disallowedElements={disallowedElements}
+								allowedElements={allowedElements}
 								remarkPlugins={markdownPlugins}
 								rehypePlugins={rehypePlugins}
 								urlTransform={urlTransform}

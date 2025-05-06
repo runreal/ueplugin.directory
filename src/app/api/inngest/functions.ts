@@ -270,10 +270,8 @@ const rawPluginData = [
 	"https://github.com/getnamo/Llama-Unreal",
 	"https://github.com/G7DAO/web3.unreal",
 	"https://github.com/davevill/UE4-GameLift",
-	"https://github.com/xsolla/store-ue4-sdk",
 	"https://github.com/stomt/stomt-unreal-plugin",
 	"https://github.com/UnrealSharp/UnrealSharp",
-	"https://github.com/rdegroot1996/UE4VoxelTerrainEditor",
 	"https://github.com/minimpoun/BlueprintWebsockets",
 	"https://github.com/orig74/UE4PyServer",
 	"https://github.com/ufna/VaQuoleUI",
@@ -543,11 +541,18 @@ export const processPlugin = inngest.createFunction(
 			console.log("no repo found", owner, name)
 			return
 		}
-		const { data: readme } = await octokit.rest.repos.getReadme({
-			owner,
-			repo: name,
-			ref: data.default_branch,
-		})
+		let readme = { content: "", path: "" }
+		try {
+			const { data: readmeData } = await octokit.rest.repos.getReadme({
+				owner,
+				repo: name,
+				ref: data.default_branch,
+			})
+			readme = readmeData
+		} catch (e) {
+			console.log("no readme found", owner, name)
+			return
+		}
 
 		const { data: treeData } = await octokit.rest.git.getTree({
 			owner,

@@ -17,7 +17,7 @@ export function PluginGrid({ plugins }: { plugins: any[] }) {
 					<a
 						href={`/${plugin.owner}/${plugin.name}`}
 						key={plugin.id}
-						className="flex flex-col relative group gap-2 border p-4 w-[350px] bg-accent/20 hover:bg-accent/50 hover:text-accent-foreground transition-colors hover:!no-underline"
+						className="flex flex-col relative group gap-2 border p-4 w-[350px] bg-accent/30 hover:bg-accent/50 hover:text-accent-foreground transition-colors hover:!no-underline"
 					>
 						<Corner
 							position="topleft"

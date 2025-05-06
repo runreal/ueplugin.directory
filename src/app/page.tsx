@@ -18,7 +18,7 @@ export default async function Home({
 	const data = await trpc.listPlugins({ search })
 
 	return (
-		<div>
+		<div className="h-full flex flex-col">
 			<img
 				src={"/grid.png"}
 				alt="grid"
@@ -33,7 +33,7 @@ export default async function Home({
 				</div>
 			</div>
 
-			<div className="flex flex-col gap-4 justify-center max-w-[1200px] m-auto">
+			<div className="flex flex-col gap-4 max-w-[1200px] w-full m-h-fulr m-auto mt-8">
 				<div className="flex items-center justify-between mt-8 px-8">
 					<div className="text-xl">{search ? <span>Seach Results</span> : <span>Popular Plugins</span>}</div>
 					<FancyButton size="large" className="uppercase" icon={() => <PlusIcon className="h-5 w-5 ml-2 mb-[2px]" />}>

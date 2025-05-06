@@ -509,15 +509,17 @@ export const processPlugins = inngest.createFunction(
 		event: "plugins.create",
 		// cron: 'every 1 hours',
 	},
-	async ({ event }) => {
+	async ({ event, step }) => {
 		for (const url of pluginData) {
-			await inngest.send({
-				name: "plugin.create",
-				data: {
-					url,
-				},
+			await step.sleep("delay-10s", 10000)
+			await step.run("queue-step", async () => {
+				await inngest.send({
+					name: "plugin.create",
+					data: {
+						url,
+					},
+				})
 			})
-			await new Promise((resolve) => setTimeout(resolve, 10000))
 		}
 	},
 )

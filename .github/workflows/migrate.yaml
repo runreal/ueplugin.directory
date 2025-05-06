@@ -36,4 +36,6 @@ jobs:
       #     DATABASE_URL: "op://platform/PALADIN_PROD/DATABASE_URL"
 
       - name: 🏗️ Migrate DB
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: pnpm db:migrate

@@ -153,7 +153,6 @@ const rawPluginData = [
 	"https://github.com/benui-dev/UE-BUITween",
 	"https://github.com/kamrann/BTUtilityPlugin",
 	"https://github.com/hxhb/ue4-export-nav-data",
-	"https://github.com/GameAnalytics/GA-SDK-UNREAL",
 	"https://github.com/mklabs/ue4-targetsystemplugin",
 	"https://github.com/DescendentStudios/PingPlugin",
 	"https://github.com/mrbandler/TwitchAuth",

@@ -69,7 +69,8 @@ export function FancyButton({
 	className,
 	size = "small",
 	icon,
-}: {
+	...props
+}: React.ComponentProps<"button"> & {
 	children: React.ReactNode
 	icon?: React.ElementType
 	disabled?: boolean
@@ -79,7 +80,7 @@ export function FancyButton({
 }) {
 	const Icon = icon || null
 	return (
-		<button type="button" className={buttonStyles({ variant, disabled, className })}>
+		<button type="button" className={buttonStyles({ variant, disabled, className })} {...props} disabled={disabled}>
 			<div
 				className={cn(
 					"absolute opacity-20 transition-opacity duration-150 inset-[3px] z-1 ease-out-expo group-active:opacity-0 group-hover:opacity-100",

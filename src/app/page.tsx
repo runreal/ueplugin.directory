@@ -1,8 +1,8 @@
 import { FancyButton } from "@/components/fancy-button"
 import { Footer } from "@/components/footer"
+import { Pagination } from "@/components/pagination"
 import { PluginGrid } from "@/components/plugin-grid"
 import { Topbar } from "@/components/topbar"
-import { Button } from "@/components/ui/button"
 import { trpc } from "@/trpc/server"
 import { PlusIcon } from "lucide-react"
 import Image from "next/image"
@@ -12,10 +12,12 @@ export default async function Home({
 }: {
 	searchParams: Promise<{
 		search?: string
+		offset?: string
 	}>
 }) {
-	const { search } = await searchParams
-	const data = await trpc.listPlugins({ search })
+	const { search, offset: strOffset } = await searchParams
+	const offset = Number.parseInt(strOffset as string) || 0
+	const data = await trpc.listPlugins({ search, offset })
 
 	return (
 		<div className="h-full flex flex-col">
@@ -41,6 +43,10 @@ export default async function Home({
 					</FancyButton>
 				</div>
 				<PluginGrid plugins={data} />
+
+				{data.length >= 100 || offset > 1 ? (
+					<Pagination search={search} offset={offset} count={data.length} className="mt-8" />
+				) : null}
 			</div>
 
 			<div className="flex flex-col items-center justify-center my-12 relative">

@@ -155,7 +155,10 @@ export default async function Page({
 						{data.githubTopics ? (
 							<div className="mb-4 flex flex-wrap">
 								{data.githubTopics.map((topic: string) => (
-									<div key={topic} className="text-sm font-semibold bg-blue-950/30 border px-3 p-1 text-blue-300 mr-2">
+									<div
+										key={topic}
+										className="text-sm font-semibold bg-blue-950/30 border px-3 p-1 mb-1 text-blue-300 mr-2"
+									>
 										{topic}
 									</div>
 								))}

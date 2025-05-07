@@ -1,7 +1,7 @@
 import { db } from "@/db"
 import { plugins } from "@/db/schema"
 import { inngest } from "@/inngest/client"
-import { App, Octokit } from "octokit"
+import { Octokit } from "octokit"
 
 const octokit = new Octokit({
 	auth: process.env.GITHUB_TOKEN,

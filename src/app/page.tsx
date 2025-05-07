@@ -31,7 +31,8 @@ export default async function Home({
 
 			<div className="w-full border-b border-foreground/20">
 				<div className="font-bold text-4xl py-18 px-8 max-w-[1200px] m-auto">
-					The open source Unreal Engine Plugin Registry
+					The Unreal Engine Plugin Registry
+					<div className="text-accent-foreground/80 text-xl mt-8 max-w-[1200px] m-auto">For open source plugins</div>
 				</div>
 			</div>
 

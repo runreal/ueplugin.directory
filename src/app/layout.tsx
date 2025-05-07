@@ -26,6 +26,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
+			<head>
+				<link rel="icon" href="/favicon.png" sizes="any" />
+			</head>
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased font-mono`}>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 					<TRPCProvider>{children}</TRPCProvider>

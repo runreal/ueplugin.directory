@@ -30,15 +30,19 @@ export default async function Home({
 			<Topbar search={search} className="z-1" />
 
 			<div className="w-full border-b border-foreground/20">
-				<div className="font-bold text-4xl py-18 px-8 max-w-[1200px] m-auto">
+				<div className="font-bold text-4xl py-18 max-w-[1200px] m-auto px-8">
 					The Unreal Engine Plugin Registry
-					<div className="text-accent-foreground/80 text-xl mt-8 max-w-[1200px] m-auto">For open source plugins</div>
+					<div className="text-accent-foreground/80 text-xl mt-8 max-w-[1200px] font-medium m-auto">
+						For open source plugins
+					</div>
 				</div>
 			</div>
 
-			<div className="flex flex-col gap-4 max-w-[1200px] w-full m-h-fulr m-auto mt-8">
-				<div className="flex items-center justify-between mt-8 px-8">
-					<div className="text-xl">{search ? <span>Seach Results</span> : <span>Popular Plugins</span>}</div>
+			<div className="flex flex-col gap-4 max-w-[1200px] w-full m-h-fulr m-auto mt-8 px-8">
+				<div className="flex items-center justify-between mt-8">
+					<div className="text-xl font-medium">
+						{search ? <span>Seach Results</span> : <span>Popular Plugins</span>}
+					</div>
 					<FancyButton size="large" className="uppercase" icon={() => <PlusIcon className="h-5 w-5 ml-2 mb-[2px]" />}>
 						Submit
 					</FancyButton>

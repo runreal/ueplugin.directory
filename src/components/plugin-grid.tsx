@@ -9,7 +9,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 
 export function PluginGrid({ plugins }: { plugins: any[] }) {
 	return (
-		<div className="flex flex-wrap gap-5 mt-8 justify-center w-full">
+		<div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-8 justify-center w-full">
 			{plugins.map((plugin) => {
 				const license = classifyLicense(plugin?.githubLicense || "")
 				const age = classifyAge(plugin?.githubPushedAt)
@@ -17,7 +17,7 @@ export function PluginGrid({ plugins }: { plugins: any[] }) {
 					<a
 						href={`/${plugin.owner}/${plugin.name}`}
 						key={plugin.id}
-						className="flex flex-col relative group gap-2 border p-4 w-[350px] bg-accent/30 hover:bg-accent/50 hover:text-accent-foreground transition-colors hover:!no-underline"
+						className="flex flex-col relative group gap-2 border p-4 w-full bg-accent/30 hover:bg-accent/50 hover:text-accent-foreground transition-colors hover:!no-underline"
 					>
 						<Corner
 							position="topleft"
@@ -37,20 +37,22 @@ export function PluginGrid({ plugins }: { plugins: any[] }) {
 						/>
 
 						<div className="flex gap-2 justify-between">
-							<div className="flex gap-2">
+							<div className="flex gap-2 items-center">
 								{plugin.uePluginIcon ? (
-									<div className="rounded-[50%] overflow-hidden w-[24px] h-[24px] flex justify-center items-center shrink-0">
-										<img src={plugin.uePluginIcon} alt="Plugin Icon" width={24} height={24} />
+									<div className="overflow-hidden w-[34px] h-[34px] flex justify-center items-center shrink-0">
+										<img src={plugin.uePluginIcon} alt="Plugin Icon" width={"100%"} height={"100%"} />
 									</div>
 								) : null}
-								<div className="text-md font-bold max-w-[230px] overflow-ellipsis truncate">{plugin.name}</div>
+								<div className="flex flex-col">
+									<div className="text-md font-bold max-w-[230px] overflow-ellipsis truncate">{plugin.name}</div>
+									<div className="text-xs text-foreground max-w-[230px] overflow-ellipsis truncate">{plugin.owner}</div>
+								</div>
 							</div>
 							<div className="flex justify-center items-center text-muted-foreground">
-								<StarIcon className="h-[16px]" />
+								<StarIcon className="h-[16px]" style={{ fill: "oklch(0.71 0 0)" }} />
 								{plugin.githubStars}
 							</div>
 						</div>
-						<div className="text-sm text-muted-foreground">{plugin.owner}</div>
 						<div className="flex justify-between items-center">
 							<div className="text-sm text-muted-foreground overflow-ellipsis truncate max-h-[24px]">
 								{plugin.description}
@@ -98,7 +100,13 @@ export function PluginGrid({ plugins }: { plugins: any[] }) {
 				)
 			})}
 
-			{plugins.length === 0 ? <div className="justify-center items-center">No plugins found</div> : null}
+			{plugins.length === 0 ? (
+				<>
+					<div />
+					<div className="flex justify-center items-center w-full h-[200px]">No plugins found</div>
+					<div />
+				</>
+			) : null}
 		</div>
 	)
 }

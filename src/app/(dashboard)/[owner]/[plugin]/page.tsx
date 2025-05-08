@@ -110,33 +110,40 @@ export default async function Page({
 	const age = classifyAge(data?.githubPushedAt)
 
 	return (
-		<div className="flex flex-col gap-4 justify-center items-center">
+		<div className="flex flex-col gap-4 items-center">
 			{data ? (
-				<div className="flex flex-col justify-center max-w-[1200px] w-full mt-8">
+				<div className="flex flex-col justify-center max-w-[1200px] w-full mt-24 px-4">
 					{/* HEADER */}
 					<div className="w-full border-b border-foreground/20">
 						<div className="flex items-center justify-between">
 							<div className="flex text-4xl font-bold">
-								<a href={repoUrl} target="_blank" rel="noopener noreferrer">
-									{data.owner}/{data.name}
+								{data.uePluginIcon ? (
+									<div className="overflow-hidden w-[64px] h-[64px] flex justify-center items-center shrink-0">
+										<img src={data.uePluginIcon} alt="Plugin Icon" width={64} height={64} className="rounded-md" />
+									</div>
+								) : null}
+								<a href={repoUrl} target="_blank" rel="noopener noreferrer" className="ml-4">
+									<span>{data.name}</span>
+									<span className="flex items-center text-xl font-normal">
+										<GithubIcon />
+										<span className="ml-2">
+											{data.owner}/{data.name}
+										</span>
+									</span>
 								</a>
-								<span className="ml-4 text-sm font-normal text-muted-foreground justify-center items-center gap-2 flex">
-									<StarIcon />
-									<span className="text-sm font-normal text-muted-foreground">{data.githubStars}</span>
-								</span>
 							</div>
 							<div>
 								<a href={repoUrl} target="_blank" rel="noopener noreferrer">
-									<GithubIcon />
+									<span className="ml-4 text-sm font-normal text-muted-foreground justify-center items-center gap-2 flex">
+										<StarIcon style={{ fill: "oklch(0.71 0 0)" }} />
+										<span className="text-lg font-normal text-muted-foreground">{data.githubStars}</span>
+									</span>
 								</a>
 							</div>
 						</div>
 
 						<div className="flex items-center justify-between my-4">
 							<div className="text-sm font-bold">{data.description ? data.description : null}</div>
-							{data.uePluginIcon ? (
-								<img src={data.uePluginIcon} alt="Plugin Icon" width={64} height={64} className="rounded-md" />
-							) : null}
 						</div>
 
 						{data.githubWebsite ? (

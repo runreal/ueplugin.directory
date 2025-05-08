@@ -1,10 +1,10 @@
 "use client"
 
-import { redirect } from "next/navigation"
-import { Button } from "./ui/button"
-import { ArrowLeftIcon, ArrowRightIcon, Fan } from "lucide-react"
-import { FancyButton } from "./fancy-button"
 import { cn } from "@/lib/utils"
+import { ArrowLeftIcon, ArrowRightIcon, Fan } from "lucide-react"
+import { redirect } from "next/navigation"
+import { FancyButton } from "./fancy-button"
+import { Button } from "./ui/button"
 
 const MAX_ROWS = 100
 

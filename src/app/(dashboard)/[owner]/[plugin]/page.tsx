@@ -1,5 +1,4 @@
 import { Rating } from "@/components/rating"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { classifyAge } from "@/lib/age-check"
 import { classifyLicense, ratingReasons } from "@/lib/license-check"
 import { timeago } from "@/lib/timeago"
@@ -16,9 +15,29 @@ import {
 	ShoppingCartIcon,
 	StarIcon,
 } from "lucide-react"
+import type { Metadata } from "next"
+import type { AnchorHTMLAttributes } from "react"
 import Markdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
+// Using ISR to generate page
+export const revalidate = 3600 // invalidate every hour
+
+
+const components = {
+ a: ({ href = "", ...props }: AnchorHTMLAttributes<HTMLAnchorElement>) => {
+      return (
+        <a
+          className="text-foreground underline underline-offset-4 hover:no-underline"
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          {...props}
+        />
+      );
+    }
+
+}
 
 const allowedElements = [
 	"p",
@@ -77,6 +96,23 @@ export function PlatformIcon({ platform, className }: { platform: string; classN
 	}
 
 	return null
+}
+
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{
+		owner: string
+		plugin: string
+	}>
+}): Promise<Metadata> {
+  const { owner, plugin } = await params
+
+
+	return {
+		title: `${plugin} - runreal plugin registry`,
+		description: `Discover ${plugin} by ${owner} on Runreal plugin registry for unreal engine`,
+	}
 }
 
 export default async function Page({
@@ -164,7 +200,7 @@ export default async function Page({
 								{data.githubTopics.map((topic: string) => (
 									<div
 										key={topic}
-										className="text-sm font-semibold bg-blue-950/30 border px-3 p-1 mb-1 text-blue-300 mr-2"
+										className="text-sm font-semibold dark:bg-blue-950/30 border px-3 p-1 mb-1 dark:text-blue-300 mr-2"
 									>
 										{topic}
 									</div>
@@ -177,7 +213,7 @@ export default async function Page({
 					<div className="flex flex-1 mt-4 gap-4 w-[100%] max-w-[1200px]">
 						{/* MARKDOWN CONTENT */}
 						<div
-							className=" readme prose dark:prose-invert w-full bg-accent/30 p-4 mb-4 border-1 border-foreground/10 max-w-[900px] font-wrap overflow-scroll"
+							className="readme prose prose-slate prose:font-geist dark:prose-invert w-full bg-accent/30 p-4 mb-4 border-1 border-foreground/10 max-w-[900px] font-wrap prose-a:hover:underline prose-a:no-underline prose-a:font-medium"
 							style={{
 								fontFamily: "var(--font-geist)",
 								color: "var(--foreground) !important",
@@ -188,6 +224,7 @@ export default async function Page({
 								remarkPlugins={markdownPlugins}
 								rehypePlugins={rehypePlugins}
 								urlTransform={urlTransform}
+								// components={components}
 							>
 								{data.readme}
 							</Markdown>

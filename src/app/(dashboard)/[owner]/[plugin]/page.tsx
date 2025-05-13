@@ -20,6 +20,11 @@ import type { AnchorHTMLAttributes } from "react"
 import Markdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import remarkGfm from "remark-gfm"
+import remarkGithub from 'remark-github'
+import remarkGemoji from "remark-gemoji";
+
+import { remark } from "remark";
+
 // Using ISR to generate page
 export const revalidate = 3600 // invalidate every hour
 
@@ -61,7 +66,7 @@ const allowedElements = [
 	"div",
 ]
 
-const markdownPlugins = [remarkGfm]
+const markdownPlugins = [ remarkGemoji, remarkGfm]
 const rehypePlugins = [rehypeRaw]
 
 // when this breaks use https://www.fab.com/search?q=${id}
@@ -129,6 +134,18 @@ export default async function Page({
 		owner,
 		name,
 	})
+
+ const preprocessedContent = await remark()
+    .use(remarkGfm)
+    .use(remarkGemoji)
+    // .use(remarkGithub, {
+
+    // })
+    .process(
+      data.readme || ""
+    );
+
+	// console.log(String(preprocessedContent))
 	const repoUrl = `https://github.com/${owner}/${name}`
 
 	const urlTransform = (url: string) => {
@@ -226,7 +243,7 @@ export default async function Page({
 								urlTransform={urlTransform}
 								// components={components}
 							>
-								{data.readme}
+								{String(preprocessedContent)}
 							</Markdown>
 						</div>
 

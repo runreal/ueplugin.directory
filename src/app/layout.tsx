@@ -29,7 +29,7 @@ export default function RootLayout({
 			<head>
 				<link rel="icon" href="/favicon.png" sizes="any" />
 			</head>
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased font-mono`}>
+			<body className={`${geistSans.variable} ${geistMono.variable} antialiased font-mono dark`}>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 					<TRPCProvider>{children}</TRPCProvider>
 				</ThemeProvider>

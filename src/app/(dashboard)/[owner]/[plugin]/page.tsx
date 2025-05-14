@@ -142,17 +142,18 @@ export default async function Page({
 										<img src={data.uePluginIcon} alt="Plugin Icon" width={64} height={64} className="rounded-md" />
 									</div>
 								) : null}
-								<div className="ml-4">
-									<span>{data.name}</span>
+								<div className="ml-4 flex items-start flex-col ">
+									<div>{data.name}</div>
+									<div>
 									<a href={repoUrl} target="_blank" rel="noopener noreferrer" >
 
 									<span className="flex items-center text-sm font-light justify-center">
-										<span className="ml-2">
 											{data.owner}/{data.name}
-										</span>
+
 										<SquareArrowOutUpRight className="h-4 w-4  ml-2" />
 									</span>
 								</a>
+									</div>
 								</div>
 							</div>
 							<div>

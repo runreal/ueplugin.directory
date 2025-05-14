@@ -6,3 +6,9 @@ body:
   - type: markdown
     attributes:
       value: Please add the git repository to request the new plugin
+  - type: input
+    id: url
+    attributes:
+      label: Repository URL
+      description: The repository URL
+      placeholder: ex github.com/runreal/plugin

@@ -25,12 +25,12 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang="en" suppressHydrationWarning className="h-dvh">
 			<head>
 				<link rel="icon" href="/favicon.png" sizes="any" />
 			</head>
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased font-mono`}>
-				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+			<body className={`${geistSans.variable} ${geistMono.variable} antialiased font-mono dark`}>
+				<ThemeProvider attribute="class" defaultTheme="dark"  disableTransitionOnChange>
 					<TRPCProvider>{children}</TRPCProvider>
 				</ThemeProvider>
 			</body>

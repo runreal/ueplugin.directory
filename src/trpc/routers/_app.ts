@@ -34,7 +34,7 @@ export const appRouter = createTRPCRouter({
 						: undefined, //eq(plugins.status, "active"),
 				)
 				.orderBy(desc(plugins.githubStars))
-				.limit(100)
+				.limit(99)
 				.offset(opts.input.offset || 0)
 		}),
 	listPluginNames: baseProcedure.query((opts) => {
@@ -59,7 +59,6 @@ export const appRouter = createTRPCRouter({
 				.select()
 				.from(plugins)
 				.where(and(eq(plugins.owner, opts.input.owner), eq(plugins.name, opts.input.name)))
-
 			return res[0]
 		}),
 })

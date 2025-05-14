@@ -13,13 +13,19 @@ import {
 	GithubIcon,
 	JoystickIcon,
 	ShoppingCartIcon,
+	SquareArrowOutUpRight,
+	SquareArrowUp,
 	StarIcon,
 } from "lucide-react"
 import type { Metadata } from "next"
 import type { AnchorHTMLAttributes } from "react"
 import Markdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
+import rehypeSanitize from 'rehype-sanitize'
 import remarkGfm from "remark-gfm"
+import remarkGemoji from "remark-gemoji";
+
+
 // Using ISR to generate page
 export const revalidate = 3600 // invalidate every hour
 
@@ -35,34 +41,12 @@ const components = {
           {...props}
         />
       );
-    }
-
+    },
 }
 
-const allowedElements = [
-	"p",
-	"strong",
-	"em",
-	"ul",
-	"ol",
-	"li",
-	"a",
-	"code",
-	"pre",
-	"blockquote",
-	"h1",
-	"h2",
-	"h3",
-	"h4",
-	"h5",
-	"h6",
-	"hr",
-	"br",
-	"div",
-]
 
-const markdownPlugins = [remarkGfm]
-const rehypePlugins = [rehypeRaw]
+const markdownPlugins = [ remarkGemoji, remarkGfm]
+const rehypePlugins = [rehypeRaw,rehypeSanitize]
 
 // when this breaks use https://www.fab.com/search?q=${id}
 const parseMarketplaceURL = (url: string) => {
@@ -129,6 +113,7 @@ export default async function Page({
 		owner,
 		name,
 	})
+
 	const repoUrl = `https://github.com/${owner}/${name}`
 
 	const urlTransform = (url: string) => {
@@ -139,8 +124,7 @@ export default async function Page({
 		return `${repoUrl}/blob/${data.githubBranch}/${url}`
 	}
 
-	// const [tab, setTab] = useQueryState("tab", { defaultValue: '' });
-	//
+
 
 	const license = classifyLicense(data?.githubLicense || "")
 	const age = classifyAge(data?.githubPushedAt)
@@ -158,15 +142,18 @@ export default async function Page({
 										<img src={data.uePluginIcon} alt="Plugin Icon" width={64} height={64} className="rounded-md" />
 									</div>
 								) : null}
-								<a href={repoUrl} target="_blank" rel="noopener noreferrer" className="ml-4">
+								<div className="ml-4">
 									<span>{data.name}</span>
-									<span className="flex items-center text-xl font-normal">
-										<GithubIcon />
+									<a href={repoUrl} target="_blank" rel="noopener noreferrer" >
+
+									<span className="flex items-center text-sm font-light justify-center">
 										<span className="ml-2">
 											{data.owner}/{data.name}
 										</span>
+										<SquareArrowOutUpRight className="h-4 w-4  ml-2" />
 									</span>
 								</a>
+								</div>
 							</div>
 							<div>
 								<a href={repoUrl} target="_blank" rel="noopener noreferrer">
@@ -220,13 +207,12 @@ export default async function Page({
 							}}
 						>
 							<Markdown
-								allowedElements={allowedElements}
 								remarkPlugins={markdownPlugins}
 								rehypePlugins={rehypePlugins}
 								urlTransform={urlTransform}
-								// components={components}
+								components={components}
 							>
-								{data.readme}
+{data.readme}
 							</Markdown>
 						</div>
 

@@ -13,6 +13,8 @@ import {
 	GithubIcon,
 	JoystickIcon,
 	ShoppingCartIcon,
+	SquareArrowOutUpRight,
+	SquareArrowUp,
 	StarIcon,
 } from "lucide-react"
 import type { Metadata } from "next"
@@ -140,15 +142,18 @@ export default async function Page({
 										<img src={data.uePluginIcon} alt="Plugin Icon" width={64} height={64} className="rounded-md" />
 									</div>
 								) : null}
-								<a href={repoUrl} target="_blank" rel="noopener noreferrer" className="ml-4">
+								<div className="ml-4">
 									<span>{data.name}</span>
-									<span className="flex items-center text-xl font-normal">
-										<GithubIcon />
+									<a href={repoUrl} target="_blank" rel="noopener noreferrer" >
+
+									<span className="flex items-center text-sm font-light justify-center">
 										<span className="ml-2">
 											{data.owner}/{data.name}
 										</span>
+										<SquareArrowOutUpRight className="h-4 w-4  ml-2" />
 									</span>
 								</a>
+								</div>
 							</div>
 							<div>
 								<a href={repoUrl} target="_blank" rel="noopener noreferrer">

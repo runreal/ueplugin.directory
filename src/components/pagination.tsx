@@ -4,9 +4,8 @@ import { cn } from "@/lib/utils"
 import { ArrowLeftIcon, ArrowRightIcon, Fan } from "lucide-react"
 import { redirect } from "next/navigation"
 import { FancyButton } from "./fancy-button"
-import { Button } from "./ui/button"
 
-const MAX_ROWS = 100
+const MAX_ROWS = 99
 
 export function Pagination({
 	search,

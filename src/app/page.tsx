@@ -4,7 +4,6 @@ import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
 import { Pagination } from "@/components/pagination";
 import { PluginGrid } from "@/components/plugin-grid";
-import { Topbar } from "@/components/topbar";
 import { trpc } from "@/trpc/server";
 import { PlusIcon } from "lucide-react";
 import Image from "next/image";
@@ -23,12 +22,6 @@ export default async function Home({
 
   return (
     <div className="h-full flex flex-col">
-      {/* <img
-        src={"/grid.png"}
-        alt="grid"
-        className="absolute top-[-200px] left-[25%] w-[50%] h-full object-cover opacity-100 z-0"
-      /> */}
-
       <Header />
       <Hero />
 
@@ -37,6 +30,7 @@ export default async function Home({
           <div className="text-xl font-medium">
             {search ? <span>Seach Results</span> : <span>Popular Plugins</span>}
           </div>
+          <a href="https://github.com/runreal/plugin.registry/issues/new?template=request_plugin.yml" target="_blank" rel="noreferrer">
           <FancyButton
             size="large"
             className="uppercase"
@@ -44,10 +38,11 @@ export default async function Home({
           >
             Submit
           </FancyButton>
+          </a>
         </div>
         <PluginGrid plugins={data} />
 
-        {data.length >= 100 || offset > 1 ? (
+        {data.length >= 99 || offset > 1 ? (
           <Pagination
             search={search}
             offset={offset}

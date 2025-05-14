@@ -8,10 +8,9 @@ export function Footer({ className }: { className?: string }) {
         className,
       )}
     >
-      <div className="flex gap-4 justify-center  items-center w-full m-auto text-sm">
-        Powered by
-        <a href="http://runreal.dev" target="_blank" rel="noopener noreferrer">
-          runreal.dev
+      <div className="w-full m-auto text-sm text-center">
+        Powered by{" "}
+        <a href="https://runreal.dev" target="_blank" rel="noopener noreferrer">runreal.dev
         </a>
       </div>
     </div>

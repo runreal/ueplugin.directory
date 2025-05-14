@@ -1,0 +1,8 @@
+name: "New plugin request"
+description: Fill this to add a new plugin
+labels:
+  - plugin-request
+body:
+  - type: markdown
+    attributes:
+      value: Please add the git repository to request the new plugin

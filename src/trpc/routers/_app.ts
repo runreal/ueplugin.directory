@@ -59,7 +59,6 @@ export const appRouter = createTRPCRouter({
 				.select()
 				.from(plugins)
 				.where(and(eq(plugins.owner, opts.input.owner), eq(plugins.name, opts.input.name)))
-
 			return res[0]
 		}),
 })

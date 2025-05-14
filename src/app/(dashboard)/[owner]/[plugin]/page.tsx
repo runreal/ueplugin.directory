@@ -19,11 +19,10 @@ import type { Metadata } from "next"
 import type { AnchorHTMLAttributes } from "react"
 import Markdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
+import rehypeSanitize from 'rehype-sanitize'
 import remarkGfm from "remark-gfm"
-import remarkGithub from 'remark-github'
 import remarkGemoji from "remark-gemoji";
 
-import { remark } from "remark";
 
 // Using ISR to generate page
 export const revalidate = 3600 // invalidate every hour
@@ -40,34 +39,12 @@ const components = {
           {...props}
         />
       );
-    }
-
+    },
 }
 
-const allowedElements = [
-	"p",
-	"strong",
-	"em",
-	"ul",
-	"ol",
-	"li",
-	"a",
-	"code",
-	"pre",
-	"blockquote",
-	"h1",
-	"h2",
-	"h3",
-	"h4",
-	"h5",
-	"h6",
-	"hr",
-	"br",
-	"div",
-]
 
 const markdownPlugins = [ remarkGemoji, remarkGfm]
-const rehypePlugins = [rehypeRaw]
+const rehypePlugins = [rehypeRaw,rehypeSanitize]
 
 // when this breaks use https://www.fab.com/search?q=${id}
 const parseMarketplaceURL = (url: string) => {
@@ -135,17 +112,6 @@ export default async function Page({
 		name,
 	})
 
- const preprocessedContent = await remark()
-    .use(remarkGfm)
-    .use(remarkGemoji)
-    // .use(remarkGithub, {
-
-    // })
-    .process(
-      data.readme || ""
-    );
-
-	// console.log(String(preprocessedContent))
 	const repoUrl = `https://github.com/${owner}/${name}`
 
 	const urlTransform = (url: string) => {
@@ -156,8 +122,7 @@ export default async function Page({
 		return `${repoUrl}/blob/${data.githubBranch}/${url}`
 	}
 
-	// const [tab, setTab] = useQueryState("tab", { defaultValue: '' });
-	//
+
 
 	const license = classifyLicense(data?.githubLicense || "")
 	const age = classifyAge(data?.githubPushedAt)
@@ -237,13 +202,12 @@ export default async function Page({
 							}}
 						>
 							<Markdown
-								allowedElements={allowedElements}
 								remarkPlugins={markdownPlugins}
 								rehypePlugins={rehypePlugins}
 								urlTransform={urlTransform}
-								// components={components}
+								components={components}
 							>
-								{String(preprocessedContent)}
+{data.readme}
 							</Markdown>
 						</div>
 

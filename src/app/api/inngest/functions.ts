@@ -133,7 +133,7 @@ export const processPlugin = inngest.createFunction(
 			owner: data.owner.login,
 			description: data.description,
 			status: data.archived ? "archived" : "active",
-			readme: atob(readme.content),
+			readme: Buffer.from(readme.content, 'base64').toString('utf8'),
 			readmePath: readme.path,
 			// pluginRoot: ''
 			githubId: data.id,

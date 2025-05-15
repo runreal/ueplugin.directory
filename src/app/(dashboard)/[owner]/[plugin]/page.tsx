@@ -115,7 +115,6 @@ export default async function Page({
 	const repoUrl = `https://github.com/${owner}/${name}`
 
 	const urlTransform = (url: string) => {
-		console.log(url)
 		if (url.startsWith("http")) {
 			return url
 		}

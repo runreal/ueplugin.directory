@@ -2,10 +2,7 @@ import { Rating } from "@/components/rating"
 import { classifyAge } from "@/lib/age-check"
 import { classifyLicense, ratingReasons } from "@/lib/license-check"
 import { timeago } from "@/lib/timeago"
-import { cn } from "@/lib/utils"
 import { trpc } from "@/trpc/server"
-import { faAndroid, faApple, faLinux, faWindows } from "@fortawesome/free-brands-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
 	ExternalLinkIcon,
 	FileImageIcon,
@@ -24,6 +21,7 @@ import rehypeRaw from "rehype-raw"
 import rehypeSanitize from 'rehype-sanitize'
 import remarkGfm from "remark-gfm"
 import remarkGemoji from "remark-gemoji";
+import { PlatformIcon } from "@/components/platform-icon"
 
 
 // Using ISR to generate page
@@ -62,24 +60,6 @@ const parseMarketplaceURL = (url: string) => {
 	}
 
 	return url
-}
-
-export function PlatformIcon({ platform, className }: { platform: string; className?: string }) {
-	const platforms = {
-		Win64: () => <FontAwesomeIcon icon={faWindows} className={cn("h-[24px] w-[24px]", className)} />,
-		Mac: () => <FontAwesomeIcon icon={faApple} className={cn("h-[24px] w-[24px]", className)} />,
-		Linux: () => <FontAwesomeIcon icon={faLinux} className={cn("h-[24px] w-[24px]", className)} />,
-		IOS: () => <FontAwesomeIcon icon={faApple} className={cn("h-[24px] w-[24px]", className)} />,
-		Android: () => <FontAwesomeIcon icon={faAndroid} className={cn("h-[24px] w-[24px]", className)} />,
-	}
-
-	const icon = platforms[platform as keyof typeof platforms]
-
-	if (icon) {
-		return icon()
-	}
-
-	return null
 }
 
 export async function generateMetadata({
@@ -143,11 +123,11 @@ export default async function Page({
 									</div>
 								) : null}
 								<div className="ml-4 flex items-start flex-col ">
-									<div>{data.name}</div>
+									<div className="text-gray-200">{data.name}</div>
 									<div>
 									<a href={repoUrl} target="_blank" rel="noopener noreferrer" >
 
-									<span className="flex items-center text-sm font-light justify-center">
+									<span className="flex items-center text-sm font-light justify-center text-gray-600">
 											{data.owner}/{data.name}
 
 										<SquareArrowOutUpRight className="h-4 w-4  ml-2" />
@@ -188,7 +168,7 @@ export default async function Page({
 								{data.githubTopics.map((topic: string) => (
 									<div
 										key={topic}
-										className="text-sm font-semibold dark:bg-blue-950/30 border px-3 p-1 mb-1 dark:text-blue-300 mr-2"
+										className="text-sm font-semibold bg-blue-950/30 border px-3 p-1 mb-1 text-blue-300 mr-2"
 									>
 										{topic}
 									</div>
@@ -201,7 +181,7 @@ export default async function Page({
 					<div className="flex flex-1 mt-4 gap-4 w-[100%] max-w-[1200px]">
 						{/* MARKDOWN CONTENT */}
 						<div
-							className="readme prose prose-slate prose:font-geist dark:prose-invert w-full bg-accent/30 p-4 mb-4 border-1 border-foreground/10 max-w-[900px] font-wrap prose-a:hover:underline prose-a:no-underline prose-a:font-semibold prose-a:text-blue-300"
+							className="readme prose prose-slate prose:font-geist prose-invert w-full bg-accent/30 p-4 mb-4 border-1 border-foreground/10 max-w-[900px] font-wrap prose-a:hover:underline prose-a:no-underline prose-a:font-semibold prose-a:text-blue-300"
 							style={{
 								fontFamily: "var(--font-geist)",
 								color: "var(--foreground) !important",

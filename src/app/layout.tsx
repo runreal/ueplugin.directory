@@ -1,11 +1,12 @@
 import { ThemeProvider } from "@/components/theme-provider"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono , Inter, Roboto_Mono} from "next/font/google"
+import { Geist, Geist_Mono, Inter, Roboto_Mono} from "next/font/google"
 import "./globals.css"
 import { TRPCProvider } from "@/trpc/client"
 
 const robotoMono = Roboto_Mono({
   variable: "--font-mono",
+  subsets:["latin"]
 })
 
 const inter = Inter({

@@ -41,7 +41,7 @@ export default async function Home({
           <a href="https://github.com/runreal/plugin.registry/issues/new?template=request_plugin.yml" target="_blank" rel="noreferrer">
           <FancyButton
             size="large"
-            className="uppercase font-mono"
+            className="uppercase font-mono text-gray-200"
             icon={() => <PlusIcon className="h-5 w-5 ml-2 mb-[2px]" />}
           >
             Submit

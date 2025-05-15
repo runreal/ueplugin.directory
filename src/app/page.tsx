@@ -32,7 +32,7 @@ export default async function Home({
 			<Topbar showSearch={false} />
 			<Hero />
 
-			<div className="flex flex-col gap-4 max-w-[1200px] w-full m-h-fulr m-auto mt-8 px-8">
+			<div className="flex flex-col gap-4 max-w-[1200px] w-full m-h-fulr m-auto md:mt-8 px-8">
 				<div className="flex items-center justify-between mt-8">
 					<div className="text-xl font-medium font-mono">
 						{search ? <span>Seach Results</span> : <span>Popular Plugins</span>}

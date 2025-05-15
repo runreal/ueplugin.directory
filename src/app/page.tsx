@@ -13,6 +13,13 @@ import Image from "next/image"
 export const metadata: Metadata = {
 	title: "The Unreal Plugin Registry",
 	description: "Discover, share, and contribute to open-source Unreal Engine plugins",
+	openGraph: {
+		images: [
+			{
+				url: "https://ueplugin.directory/og.png",
+			},
+		],
+	},
 }
 
 export default async function Home({

@@ -1,7 +1,7 @@
 # Unreal Engine Plugin Registry
 > For open source plugins
 
-![hero](public/screen.png)
+![hero](public/hero.png)
 
 <p align="center">
   <br />

@@ -9,7 +9,8 @@ const robotoMono = Roboto_Mono({
 })
 
 const inter = Inter({
-  variable:"--font-inter"
+  variable:"--font-inter",
+  subsets:["latin"]
 })
 
 

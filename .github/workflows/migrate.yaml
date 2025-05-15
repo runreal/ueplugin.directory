@@ -27,14 +27,6 @@ jobs:
       - name: 📥 Download deps
         run: pnpm install
 
-      # - name: Load Secrets
-      #   uses: 1password/load-secrets-action@v2
-      #   with:
-      #     export-env: true
-      #   env:
-      #     OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-      #     DATABASE_URL: "op://platform/PALADIN_PROD/DATABASE_URL"
-
       - name: 🏗️ Migrate DB
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}

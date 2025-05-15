@@ -1,11 +1,9 @@
+import { PlatformIcon } from "@/components/platform-icon"
 import { Rating } from "@/components/rating"
 import { classifyAge } from "@/lib/age-check"
 import { classifyLicense, ratingReasons } from "@/lib/license-check"
 import { timeago } from "@/lib/timeago"
-import { cn } from "@/lib/utils"
 import { trpc } from "@/trpc/server"
-import { faAndroid, faApple, faLinux, faWindows } from "@fortawesome/free-brands-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
 	ExternalLinkIcon,
 	FileImageIcon,
@@ -59,24 +57,6 @@ const parseMarketplaceURL = (url: string) => {
 	}
 
 	return url
-}
-
-export function PlatformIcon({ platform, className }: { platform: string; className?: string }) {
-	const platforms = {
-		Win64: () => <FontAwesomeIcon icon={faWindows} className={cn("h-[24px] w-[24px]", className)} />,
-		Mac: () => <FontAwesomeIcon icon={faApple} className={cn("h-[24px] w-[24px]", className)} />,
-		Linux: () => <FontAwesomeIcon icon={faLinux} className={cn("h-[24px] w-[24px]", className)} />,
-		IOS: () => <FontAwesomeIcon icon={faApple} className={cn("h-[24px] w-[24px]", className)} />,
-		Android: () => <FontAwesomeIcon icon={faAndroid} className={cn("h-[24px] w-[24px]", className)} />,
-	}
-
-	const icon = platforms[platform as keyof typeof platforms]
-
-	if (icon) {
-		return icon()
-	}
-
-	return null
 }
 
 export async function generateMetadata({
@@ -143,10 +123,10 @@ export default async function Page({
 									</div>
 								) : null}
 								<div className="ml-4 flex items-start flex-col">
-									<div className="break-words">{data.name}</div>
+									<div className="break-words text-gray-200">{data.name}</div>
 									<div>
 										<a href={repoUrl} target="_blank" rel="noopener noreferrer">
-											<span className="flex items-center text-sm font-light justify-center">
+											<span className="flex items-center text-sm font-light text-gray-600 justify-center">
 												{data.owner}/{data.name}
 												<SquareArrowOutUpRight className="h-4 w-4  ml-2" />
 											</span>
@@ -203,7 +183,7 @@ export default async function Page({
 
 						{/* MARKDOWN CONTENT */}
 						<div
-							className="readme prose prose-slate prose:font-geist dark:prose-invert w-full bg-accent/30 p-4 mb-4 border-1 border-foreground/10 max-w-[850px] font-wrap break-words prose-a:hover:underline prose-a:no-underline prose-a:font-semibold prose-a:text-blue-300"
+							className="readme prose prose-slate prose:font-geist prose-invert w-full bg-accent/30 p-4 mb-4 border-1 border-foreground/10 max-w-[850px] font-wrap break-words prose-a:hover:underline prose-a:no-underline prose-a:font-semibold prose-a:text-blue-300"
 							style={{
 								fontFamily: "var(--font-geist)",
 								color: "var(--foreground) !important",

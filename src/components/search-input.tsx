@@ -44,7 +44,7 @@ const SearchInput = () => {
 	}
 
 	return (
-		<div className="inline-flex items-center w-full max-w-[400px] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring border border-input hover:text-accent-foreground py-2 relative h-10 justify-start bg-muted/50 text-sm font-normal text-muted-foreground shadow-(--inset-shadow) p-0 overflow-hidden">
+		<div className="inline-flex items-center w-full max-w-[400px] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring border border-input hover:text-accent-foreground py-2 relative h-10 justify-start bg-muted/50 text-sm font-normal text-muted-foreground shadow-none p-0 overflow-hidden font-mono">
 			<Input
 				ref={inputRef}
 				onChange={onSearch}
@@ -53,7 +53,7 @@ const SearchInput = () => {
 				value={value}
 				type="text"
 				placeholder="Search plugins..."
-				className="h-10 w-full border-0 px-4 text-sm font-normal text-muted-foreground shadow-none outline-none transition-all focus-visible:outline-none focus-visible:ring-0 hover:!bg-accent focus:!bg-accent !rounded-0 focus-visible:border-0"
+				className="h-10 w-full border-0 px-4 text-sm font-normal text-muted-foreground shadow-(--inset-shadow) outline-none transition-all focus-visible:outline-none focus-visible:ring-0 hover:!bg-accent focus:!bg-accent !rounded-0 focus-visible:border-0"
 			/>
 			<kbd className="pointer-events-none absolute right-3 top-[10px] hidden h-5 select-none items-center gap-1 border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
 				<span className="text-xs">⌘</span>K

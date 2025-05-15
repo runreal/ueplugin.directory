@@ -1,9 +1,6 @@
-
-import { SearchInput } from "./search-input";
+import { SearchInput } from "./search-input"
 
 const Hero = () => {
-
-
 
   return (
     <div className="w-full border-b border-foreground/20  items-center text-center flex flex-col  mt-12">

@@ -18,6 +18,12 @@ If you would like to submit a new plugin please open an issue on Github. We are 
 [CONTRIBUTING.md](CONTRIBUTING.md)
 
 
+### Disclaimer
+This is not an official Epic Games Unreal Engine project.
+
+Unreal Engine is a registered trademark of Epic Games, Inc.
+
+
 ### License
 
 MIT [LICENSE](LICENSE)

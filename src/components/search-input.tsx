@@ -1,47 +1,47 @@
-"use client";
+"use client"
 
-import {  useEffect, useRef, useState } from "react";
-import { Input } from "./ui/input";
+import { useEffect, useRef, useState } from "react"
+import { Input } from "./ui/input"
 
 const SearchInput = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
+	const inputRef = useRef<HTMLInputElement>(null)
 
-  const [value, setValue] = useState("");
-  const [focused, setFocused] = useState(false);
+	const [value, setValue] = useState("")
+	const [focused, setFocused] = useState(false)
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "k" && event.metaKey) {
-        event.preventDefault();
-        // Trigger the search input focus here
-        const searchInput = inputRef.current;
-        if (searchInput) {
-          searchInput.focus();
-          searchInput.select();
-        }
-      }
-      if (event.key === "Escape") {
-        const searchInput = inputRef.current;
-        if (searchInput) {
-          searchInput.blur();
-        }
-      }
-      if (event.key === "Enter" && focused) {
-        window.location.href = `/?search=${value}`;
-      }
-    };
+	useEffect(() => {
+		const handleKeyDown = (event: KeyboardEvent) => {
+			if (event.key === "k" && event.metaKey) {
+				event.preventDefault()
+				// Trigger the search input focus here
+				const searchInput = inputRef.current
+				if (searchInput) {
+					searchInput.focus()
+					searchInput.select()
+				}
+			}
+			if (event.key === "Escape") {
+				const searchInput = inputRef.current
+				if (searchInput) {
+					searchInput.blur()
+				}
+			}
+			if (event.key === "Enter" && focused) {
+				window.location.href = `/?search=${value}`
+			}
+		}
 
-    window.addEventListener("keydown", handleKeyDown);
+		window.addEventListener("keydown", handleKeyDown)
 
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [value, focused]);
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown)
+		}
+	}, [value, focused])
 
-  const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setValue(value);
-  };
+	const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value
+		setValue(value)
+	}
 
   return (
     <div className="inline-flex items-center w-[400px] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring border border-input hover:text-accent-foreground py-2 relative h-10 justify-start bg-muted/50 text-sm font-normal text-muted-foreground shadow-none p-0 overflow-hidden font-mono">

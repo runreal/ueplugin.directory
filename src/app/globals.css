@@ -42,6 +42,7 @@
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
     --radius-xl: calc(var(--radius) + 4px);
+    --inset-shadow: 0px 0px 16px 0px rgba(255, 255, 255, 0.05) inset;
 
     --color-gray-50: oklch(0.98 0 0);
     --color-gray-100: oklch(0.96 0 0);

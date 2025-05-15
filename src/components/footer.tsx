@@ -10,7 +10,7 @@ export function Footer({ className }: { className?: string }) {
 				</a>
 			</div>
 			<div className="w-full m-auto text-sm text-center text-muted-foreground mt-3">
-				This is not an official Epic Games Unreal Engine project.
+				This is not an official Epic Games project.
 				<br />
 				Unreal Engine is a registered trademark of{" "}
 				<a href="https://www.epicgames.com/" target="_blank" rel="noopener noreferrer">

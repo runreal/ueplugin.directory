@@ -70,8 +70,8 @@ export async function generateMetadata({
 	const { owner, plugin } = await params
 
 	return {
-		title: `${plugin} - runreal plugin registry`,
-		description: `Discover ${plugin} by ${owner} on Runreal plugin registry for Unreal Engine`,
+		title: `${plugin} - ueplugin.directory`,
+		description: `Discover ${plugin} by ${owner} on ueplugin.directory for Unreal Engine`,
 	}
 }
 

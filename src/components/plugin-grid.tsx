@@ -1,4 +1,3 @@
-import { PlatformIcon } from "@/app/(dashboard)/[owner]/[plugin]/page"
 import { classifyAge } from "@/lib/age-check"
 import { classifyLicense, ratingReasons } from "@/lib/license-check"
 import { timeago } from "@/lib/timeago"
@@ -6,6 +5,7 @@ import { StarIcon } from "lucide-react"
 import { Corner } from "./corner"
 import { Rating } from "./rating"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
+import { PlatformIcon } from "./platform-icon"
 
 export function PluginGrid({ plugins }: { plugins: any[] }) {
 	return (
@@ -44,17 +44,17 @@ export function PluginGrid({ plugins }: { plugins: any[] }) {
 									</div>
 								) : null}
 								<div className="flex flex-col">
-									<div className="text-md font-bold max-w-[230px] overflow-ellipsis truncate">{plugin.name}</div>
-									<div className="text-xs text-foreground max-w-[230px] overflow-ellipsis truncate">{plugin.owner}</div>
+									<div className="text-md font-bold max-w-[230px] overflow-ellipsis truncate text-gray-200 ">{plugin.name}</div>
+									<div className="text-xs text-gray-600 max-w-[230px] overflow-ellipsis truncate font-mono">By {plugin.owner}</div>
 								</div>
 							</div>
-							<div className="flex justify-center items-center text-muted-foreground">
-								<StarIcon className="h-[16px]" style={{ fill: "oklch(0.71 0 0)" }} />
+							<div className="flex justify-center items-center text-gray-600">
+								<StarIcon className="h-[16px]"  />
 								{plugin.githubStars}
 							</div>
 						</div>
 						<div className="flex justify-between items-center">
-							<div className="text-sm text-muted-foreground overflow-ellipsis truncate max-h-[24px]">
+							<div className="text-sm text-gray-200 overflow-ellipsis truncate max-h-[24px]">
 								{plugin.description}
 							</div>
 						</div>
@@ -90,7 +90,7 @@ export function PluginGrid({ plugins }: { plugins: any[] }) {
 										<PlatformIcon
 											key={platform}
 											platform={platform}
-											className="h-[20px] w-[20px] mr-2 text-muted-foreground text-[10px]"
+											className="h-[20px] w-[20px] mr-2 text-gray-600 text-[10px]"
 										/>
 									)
 								})}

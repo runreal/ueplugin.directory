@@ -4,6 +4,7 @@ import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
 import { Pagination } from "@/components/pagination";
 import { PluginGrid } from "@/components/plugin-grid";
+import { Topbar } from "@/components/topbar";
 import { trpc } from "@/trpc/server";
 import { PlusIcon } from "lucide-react";
 import type { Metadata } from "next";

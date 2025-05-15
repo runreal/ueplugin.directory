@@ -18,16 +18,16 @@ export function Pagination({
 	offset: number
 	count: number
 }) {
-	const paginatePrev =  () => {
+	const paginatePrev = () => {
 		if (search) {
 			return redirect(`/?search=${search || ""}&offset=${offset - MAX_ROWS}`)
 		}
 		return redirect(`/?offset=${offset - MAX_ROWS}`)
 	}
 
-	const paginateNext =  () => {
+	const paginateNext = () => {
 		if (search) {
-			return  redirect(`/?search=${search || ""}&offset=${offset + MAX_ROWS}`)
+			return redirect(`/?search=${search || ""}&offset=${offset + MAX_ROWS}`)
 		}
 		return redirect(`/?offset=${offset + MAX_ROWS}`)
 	}

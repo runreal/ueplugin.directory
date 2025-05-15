@@ -4,7 +4,7 @@
 
 <p align="center">For open-source Unreal Engine plugins.
   <br />
-  <a href="https://ueplugins.directory">Website</a>
+  <a href="https://ueplugin.directory">Website</a>
   ·
   <a href="https://x.com/runreal_dev">Twitter</a>
   ·

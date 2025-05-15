@@ -1,3 +1,4 @@
+import { PlatformIcon } from "@/components/platform-icon"
 import { Rating } from "@/components/rating"
 import { classifyAge } from "@/lib/age-check"
 import { classifyLicense, ratingReasons } from "@/lib/license-check"
@@ -19,10 +20,8 @@ import type { AnchorHTMLAttributes } from "react"
 import Markdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
+import remarkGemoji from "remark-gemoji"
 import remarkGfm from "remark-gfm"
-import remarkGemoji from "remark-gemoji";
-import { PlatformIcon } from "@/components/platform-icon"
-
 
 // Using ISR to generate page
 export const revalidate = 3600 // invalidate every hour

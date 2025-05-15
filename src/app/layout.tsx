@@ -1,18 +1,17 @@
 import { ThemeProvider } from "@/components/theme-provider"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Geist, Geist_Mono , Inter, Roboto_Mono} from "next/font/google"
 import "./globals.css"
 import { TRPCProvider } from "@/trpc/client"
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
+const robotoMono = Roboto_Mono({
+  variable: "--font-mono",
 })
 
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
+const inter = Inter({
+  variable:"--font-inter"
 })
+
 
 export const metadata: Metadata = {
 	title: "Plugin Registry",
@@ -29,7 +28,7 @@ export default function RootLayout({
 			<head>
 				<link rel="icon" href="/favicon.png" sizes="any" />
 			</head>
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased font-mono dark`}>
+			<body className={`${robotoMono.variable} ${inter.className} antialiased  dark`}>
 				<ThemeProvider attribute="class" defaultTheme="dark"  disableTransitionOnChange>
 					<TRPCProvider>{children}</TRPCProvider>
 				</ThemeProvider>

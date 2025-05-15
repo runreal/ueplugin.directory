@@ -44,7 +44,7 @@ const SearchInput = () => {
   };
 
   return (
-    <div className="inline-flex items-center w-[400px] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring border border-input hover:text-accent-foreground py-2 relative h-10 justify-start bg-muted/50 text-sm font-normal text-muted-foreground shadow-none p-0 overflow-hidden">
+    <div className="inline-flex items-center w-[400px] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring border border-input hover:text-accent-foreground py-2 relative h-10 justify-start bg-muted/50 text-sm font-normal text-muted-foreground shadow-none p-0 overflow-hidden font-mono">
       <Input
         ref={inputRef}
         onChange={onSearch}

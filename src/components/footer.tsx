@@ -8,7 +8,7 @@ export function Footer({ className }: { className?: string }) {
         className,
       )}
     >
-      <div className="w-full m-auto text-sm text-center">
+      <div className="w-full m-auto text-sm text-center font-mono">
         Powered by{" "}
         <a href="https://runreal.dev" target="_blank" rel="noopener noreferrer">runreal.dev
         </a>

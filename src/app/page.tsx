@@ -6,7 +6,15 @@ import { Pagination } from "@/components/pagination";
 import { PluginGrid } from "@/components/plugin-grid";
 import { trpc } from "@/trpc/server";
 import { PlusIcon } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
+
+
+export const metadata: Metadata = {
+  title: 'The Unreal Plugin Registry',
+  description: 'Discover, share, and contribute to open-source Unreal Engine plugins',
+}
+
 
 export default async function Home({
   searchParams,
@@ -27,13 +35,13 @@ export default async function Home({
 
       <div className="flex flex-col gap-4 max-w-[1200px] w-full m-h-fulr m-auto mt-8 px-8">
         <div className="flex items-center justify-between mt-8">
-          <div className="text-xl font-medium">
+          <div className="text-xl font-medium font-mono">
             {search ? <span>Seach Results</span> : <span>Popular Plugins</span>}
           </div>
           <a href="https://github.com/runreal/plugin.registry/issues/new?template=request_plugin.yml" target="_blank" rel="noreferrer">
           <FancyButton
             size="large"
-            className="uppercase"
+            className="uppercase font-mono"
             icon={() => <PlusIcon className="h-5 w-5 ml-2 mb-[2px]" />}
           >
             Submit

@@ -185,7 +185,7 @@ export default async function Page({
 
 						{/* MARKDOWN CONTENT */}
 						<div
-							className="readme prose prose-slate prose:font-geist prose-invert w-full bg-accent/30 p-4 mb-4 border-1 border-foreground/10 max-w-[900px] font-wrap prose-a:hover:underline prose-a:no-underline prose-a:font-semibold prose-a:text-blue-300"
+							className="readme prose prose-slate prose:font-geist prose-invert w-full bg-accent/30 p-4 mb-4 border-1 border-foreground/10 max-w-[850px] font-wrap break-words prose-a:hover:underline prose-a:no-underline prose-a:font-semibold prose-a:text-blue-300"
 							style={{
 								fontFamily: "var(--font-geist)",
 								color: "var(--foreground) !important",

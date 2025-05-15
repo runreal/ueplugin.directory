@@ -44,11 +44,11 @@ export function PluginGrid({ plugins }: { plugins: any[] }) {
 									</div>
 								) : null}
 								<div className="flex flex-col">
-									<div className="text-md font-bold max-w-[230px] overflow-ellipsis text-gray-200 ">{plugin.name}</div>
+									<div className="text-md font-bold max-w-[230px] overflow-ellipsis truncate text-gray-200 ">{plugin.name}</div>
 									<div className="text-xs text-gray-600 max-w-[230px] overflow-ellipsis truncate font-mono">By {plugin.owner}</div>
 								</div>
 							</div>
-							<div className="flex justify-center items-center text-muted-foreground text-gray-600">
+							<div className="flex justify-center items-center text-gray-600">
 								<StarIcon className="h-[16px]"  />
 								{plugin.githubStars}
 							</div>

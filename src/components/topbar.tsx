@@ -91,7 +91,7 @@ export function Topbar({
 					className="flex items-center"
 				>
 					<img src="/github.svg" alt="GitHub" className="h-5 w-5 mr-3" />
-					Star us on GitHub
+					GitHub
 				</a>
 			</div>
 		</div>

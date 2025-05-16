@@ -134,11 +134,11 @@ export default async function Page({
 									</div>
 								</div>
 							</div>
-							<div>
+							<div className="hidden md:block">
 								<a href={repoUrl} target="_blank" rel="noopener noreferrer">
-									<span className="ml-4 text-sm font-normal text-muted-foreground justify-center items-center gap-2 flex">
-										<StarIcon style={{ fill: "oklch(0.71 0 0)" }} />
-										<span className="text-lg font-normal text-muted-foreground">{data.githubStars}</span>
+									<span className="ml-4 text-sm font-normal text-gray-600 justify-center items-center gap-2 flex">
+										<StarIcon  fill="currentColor"/>
+										<span className="text-lg font-normal text-gray-600">{data.githubStars}</span>
 									</span>
 								</a>
 							</div>

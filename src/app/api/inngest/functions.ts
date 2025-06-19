@@ -90,7 +90,6 @@ export const processPlugin = inngest.createFunction(
 				if (!file.path.toLowerCase().endsWith(".uplugin")) return false
 				return file.path.split("/").length < 4
 			})
-			return
 		}
 		if (!uPluginFile) {
 			console.log("no uplugin file found", owner, data.name)
@@ -110,11 +109,12 @@ export const processPlugin = inngest.createFunction(
 		const uePluginFileContent = Array.isArray(uePluginFile) ? uePluginFile[0] : uePluginFile
 
 		// @ts-ignore
-		const uePluginContent = atob(uePluginFileContent.content)
+		const uePluginContent = Buffer.from(uePluginFileContent.content, "base64").toString("utf8").trim()
 
 		let uePluginContentJson: any
 		try {
-			uePluginContentJson = JSON.parse(JSON.stringify(uePluginContent))
+			// cleanup json
+			uePluginContentJson = JSON.parse(uePluginContent)
 		} catch (e) {
 			console.log("error parsing uplugin file", owner, data.name, uPluginFile.path, e)
 			return

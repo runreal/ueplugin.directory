@@ -1,0 +1,227 @@
+{
+  "id": "50700007-b7b9-4ba2-8040-6d8281d1b13e",
+  "prevId": "fd27868b-acc1-476e-98b0-1fc0cd2d2a03",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.plugins": {
+      "name": "plugins",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "uuid_generate_v7()"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "timezone('utc', now())"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "timezone('utc', now())"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "owner": {
+          "name": "owner",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'active'"
+        },
+        "readme": {
+          "name": "readme",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "readme_path": {
+          "name": "readme_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "changelog": {
+          "name": "changelog",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "changelog_path": {
+          "name": "changelog_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "plugin_root": {
+          "name": "plugin_root",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "github_id": {
+          "name": "github_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "github_license": {
+          "name": "github_license",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "github_branch": {
+          "name": "github_branch",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "github_stars": {
+          "name": "github_stars",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "github_forks": {
+          "name": "github_forks",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "github_website": {
+          "name": "github_website",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "github_pushed_at": {
+          "name": "github_pushed_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "github_repo_icon": {
+          "name": "github_repo_icon",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "github_owner_avatar": {
+          "name": "github_owner_avatar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "github_topics": {
+          "name": "github_topics",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ue_plugin_file_path": {
+          "name": "ue_plugin_file_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ue_plugin_info": {
+          "name": "ue_plugin_info",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ue_plugin_icon": {
+          "name": "ue_plugin_icon",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ue_plugin_dependencies": {
+          "name": "ue_plugin_dependencies",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "categories": {
+          "name": "categories",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "last_checked_commit": {
+          "name": "last_checked_commit",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "last_checked_at": {
+          "name": "last_checked_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "timezone('utc', now())"
+        }
+      },
+      "indexes": {
+        "plugins_github_id_idx": {
+          "name": "plugins_github_id_idx",
+          "columns": [
+            {
+              "expression": "github_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

@@ -77,6 +77,10 @@ export const plugins = pgTable(
 		uePluginFilePath: text("ue_plugin_file_path"), // path to the .uplugin file
 		uePluginInfo: jsonb("ue_plugin_info").$type<UEPluginDescriptor>(),
 		uePluginIcon: text("ue_plugin_icon"), // Resources/Icon128.png
+		uePluginDependencies: jsonb("ue_plugin_dependencies").$type<{
+			public: string[]
+			private: string[]
+		}>(),
 		// engineVersions: jsonb("engine_versions").$type<EngineVersion[]>(),
 		// platforms: jsonb("platforms").$type<string[]>(),
 		// plugin info

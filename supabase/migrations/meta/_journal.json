@@ -15,6 +15,13 @@
       "when": 1746220428290,
       "tag": "0001_huge_cargill",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1750351634779,
+      "tag": "0002_puzzling_tana_nile",
+      "breakpoints": true
     }
   ]
 }

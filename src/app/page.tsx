@@ -1,22 +1,19 @@
-import { FancyButton } from "@/components/fancy-button";
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
-import { Hero } from "@/components/hero";
-import { Pagination } from "@/components/pagination";
-import { PluginGrid } from "@/components/plugin-grid";
-import { Topbar } from "@/components/topbar";
-import { trpc } from "@/trpc/server";
-import { PlusIcon } from "lucide-react";
-import type { Metadata } from "next";
-import Image from "next/image";
-
-
+import { FancyButton } from "@/components/fancy-button"
+import { Footer } from "@/components/footer"
+import { Header } from "@/components/header"
+import { Hero } from "@/components/hero"
+import { Pagination } from "@/components/pagination"
+import { PluginGrid } from "@/components/plugin-grid"
+import { Topbar } from "@/components/topbar"
+import { trpc } from "@/trpc/server"
+import { PlusIcon } from "lucide-react"
+import type { Metadata } from "next"
+import Image from "next/image"
 
 export const metadata: Metadata = {
-  title: 'The Unreal Plugin Registry',
-  description: 'Discover, share, and contribute to open-source Unreal Engine plugins',
+	title: "The Unreal Plugin Registry",
+	description: "Discover, share, and contribute to open-source Unreal Engine plugins",
 }
-
 
 export default async function Home({
 	searchParams,

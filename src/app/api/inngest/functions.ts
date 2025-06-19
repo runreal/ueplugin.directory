@@ -12,6 +12,33 @@ const iconPaths = ["Resources/Icon128.png"]
 
 const pluginData = [...new Set(PLUGIN_DATA)]
 
+// Regex patterns to find PublicDependencyModuleNames and PrivateDependencyModuleNames
+const publicDepsPattern = /PublicDependencyModuleNames\.AddRange\s*\(\s*new\s+string\[\]\s*\{([^}]+)\}/g
+const privateDepsPattern = /PrivateDependencyModuleNames\.AddRange\s*\(\s*new\s+string\[\]\s*\{([^}]+)\}/g
+const publicDepsPattern2 = /PublicDependencyModuleNames\s*=\s*new\s+string\[\]\s*\{([^}]+)\}/g
+const privateDepsPattern2 = /PrivateDependencyModuleNames\s*=\s*new\s+string\[\]\s*\{([^}]+)\}/g
+
+function parseBuildCsDependencies(buildCsContent: string): {
+	publicDependencies: string[]
+	privateDependencies: string[]
+} {
+	const extractModules = (patterns: RegExp[]) => {
+		return patterns.reduce((deps: string[], pattern) => {
+			const matches = [...buildCsContent.matchAll(pattern)]
+			const modules = matches.flatMap((match) => match[1].match(/"([^"]+)"/g)?.map((m) => m.replace(/"/g, "")) || [])
+			return deps.concat(modules)
+		}, [])
+	}
+
+	const publicPatterns = [publicDepsPattern, publicDepsPattern2]
+	const privatePatterns = [privateDepsPattern, privateDepsPattern2]
+
+	return {
+		publicDependencies: [...new Set(extractModules(publicPatterns))],
+		privateDependencies: [...new Set(extractModules(privatePatterns))],
+	}
+}
+
 export const processPlugins = inngest.createFunction(
 	{ id: "create-plugins" },
 	{
@@ -120,6 +147,59 @@ export const processPlugin = inngest.createFunction(
 			return
 		}
 
+		// Find and parse Build.cs files for module dependencies
+		const { publicModuleDependencies, privateModuleDependencies } = await (async () => {
+			try {
+				const uPluginDir = uPluginFile.path.includes("/")
+					? uPluginFile.path.substring(0, uPluginFile.path.lastIndexOf("/"))
+					: ""
+				const sourcePath = uPluginDir ? `${uPluginDir}/Source` : "Source"
+
+				const { data: sourceContents } = await octokit.rest.repos
+					.getContent({ owner, repo: name, path: sourcePath })
+					.catch(() => ({ data: [] }))
+
+				if (!Array.isArray(sourceContents)) {
+					return { publicModuleDependencies: [], privateModuleDependencies: [] }
+				}
+
+				const dependencies = await sourceContents
+					.filter((item) => item.type === "dir")
+					.reduce(
+						async (accPromise, item) => {
+							const acc = await accPromise
+							const buildCsPath = `${sourcePath}/${item.name}/${item.name}.Build.cs`
+							console.log("buildCsPath", buildCsPath)
+
+							const { data: buildCsFile } = await octokit.rest.repos
+								.getContent({ owner, repo: name, path: buildCsPath })
+								.catch(() => ({ data: undefined }))
+							console.log("buildCsFile", buildCsFile)
+
+							if (buildCsFile && !Array.isArray(buildCsFile)) {
+								// @ts-ignore
+								const buildCsContent = Buffer.from(buildCsFile.content, "base64").toString("utf8")
+								const { publicDependencies, privateDependencies } = parseBuildCsDependencies(buildCsContent)
+								console.log("publicDependencies", publicDependencies)
+								acc.publicModuleDependencies.push(...publicDependencies)
+								acc.privateModuleDependencies.push(...privateDependencies)
+							}
+							return acc
+						},
+						Promise.resolve({ publicModuleDependencies: [] as string[], privateModuleDependencies: [] as string[] }),
+					)
+
+				return {
+					publicModuleDependencies: [...new Set(dependencies.publicModuleDependencies)],
+					privateModuleDependencies: [...new Set(dependencies.privateModuleDependencies)],
+				}
+			} catch (e) {
+				console.log("error finding/parsing Build.cs files", owner, data.name, e)
+				return { publicModuleDependencies: [], privateModuleDependencies: [] }
+			}
+		})()
+		console.log({ publicModuleDependencies, privateModuleDependencies })
+
 		const { data: uPluginIcon } = await octokit.rest.repos
 			.getContent({
 				owner,
@@ -152,6 +232,10 @@ export const processPlugin = inngest.createFunction(
 			githubOwnerAvatar: data.owner.avatar_url,
 			githubTopics: data.topics,
 			categories: [],
+			uePluginDependencies: {
+				public: publicModuleDependencies,
+				private: privateModuleDependencies,
+			},
 			lastCheckedAt: new Date(),
 			lastCheckedCommit: treeData.sha,
 		}

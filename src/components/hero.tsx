@@ -2,7 +2,7 @@ import { SearchInput } from "./search-input"
 
 const Hero = () => {
 	return (
-		<div className="w-full border-b border-foreground/20 items-center text-center flex flex-col mt-12 px-2" >
+		<div className="w-full border-b border-foreground/20 items-center text-center flex flex-col mt-12 px-2">
 			<div className="font-bold  text-4xl lg:text-[56px] max-w-[1200px] m-auto text-gray-200 ">
 				The Unreal Engine Plugin Registry
 			</div>

@@ -137,7 +137,7 @@ export default async function Page({
 							<div className="hidden md:block">
 								<a href={repoUrl} target="_blank" rel="noopener noreferrer">
 									<span className="ml-4 text-sm font-normal text-gray-600 justify-center items-center gap-2 flex">
-										<StarIcon  fill="currentColor"/>
+										<StarIcon fill="currentColor" />
 										<span className="text-lg font-normal text-gray-600">{data.githubStars}</span>
 									</span>
 								</a>
@@ -289,6 +289,34 @@ export default async function Page({
 											<span className="ml-2 overflow-ellipsis truncate max-w-[200px]">{platform}</span>
 										</div>
 									))}
+								</div>
+							) : null}
+
+							{data.uePluginDependencies?.public.length || data.uePluginDependencies?.public.length ? (
+								<div className="p-4 bg-accent/30 border-1 border-foreground/10">
+									<div className="mb-3 uppercase font-semibold">dependencies:</div>
+									{data.uePluginDependencies?.public.length ? (
+										<span className="mb-3">
+											<div className="my-2 font-sm">Public:</div>
+											{data.uePluginDependencies?.public.map((dep) => (
+												<div key={dep} className="flex items-center text-sm mt-1">
+													<FileJsonIcon className="h-[16px]" />
+													<span className="ml-2 overflow-ellipsis truncate max-w-[200px]">{dep}</span>
+												</div>
+											))}
+										</span>
+									) : null}
+									{data.uePluginDependencies?.private.length ? (
+										<>
+											<div className="my-2 font-sm">Private:</div>
+											{data.uePluginDependencies?.private.map((dep) => (
+												<div key={dep} className="flex items-center text-sm mt-1">
+													<FileJsonIcon className="h-[16px]" />
+													<span className="ml-2 overflow-ellipsis truncate max-w-[200px]">{dep}</span>
+												</div>
+											))}
+										</>
+									) : null}
 								</div>
 							) : null}
 

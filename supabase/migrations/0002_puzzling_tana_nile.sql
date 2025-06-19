@@ -1,0 +1,1 @@
+ALTER TABLE "plugins" ADD COLUMN "ue_plugin_dependencies" jsonb;

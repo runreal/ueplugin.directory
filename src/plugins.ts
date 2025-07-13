@@ -487,4 +487,5 @@ export const PLUGIN_DATA = [
 	"https://github.com/sleepCOW/CowNodes",
 	"https://github.com/ArmainAP/Unreal-Engine-Widget-Spline-System",
 	"https://github.com/eanticev/niagara-destruction-driver",
+	"https://github.com/CommitAndChill/BlueprintTaskForge",
 ]

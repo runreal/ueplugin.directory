@@ -39,11 +39,25 @@ function parseBuildCsDependencies(buildCsContent: string): {
 	}
 }
 
+export const processPluginCron = inngest.createFunction(
+	{
+		id: "process-plugin-cron",
+	},
+	{
+		cron: "0 0 * * *", // Every day at midnight
+	},
+	async ({ step }) => {
+		await inngest.send({
+			name: "plugins.create",
+			data: {},
+		})
+	},
+)
+
 export const processPlugins = inngest.createFunction(
 	{ id: "create-plugins" },
 	{
 		event: "plugins.create",
-		// cron: 'every 1 hours',
 	},
 	async ({ event, step }) => {
 		for (const url of pluginData) {
@@ -169,18 +183,15 @@ export const processPlugin = inngest.createFunction(
 						async (accPromise, item) => {
 							const acc = await accPromise
 							const buildCsPath = `${sourcePath}/${item.name}/${item.name}.Build.cs`
-							console.log("buildCsPath", buildCsPath)
 
 							const { data: buildCsFile } = await octokit.rest.repos
 								.getContent({ owner, repo: name, path: buildCsPath })
 								.catch(() => ({ data: undefined }))
-							console.log("buildCsFile", buildCsFile)
 
 							if (buildCsFile && !Array.isArray(buildCsFile)) {
 								// @ts-ignore
 								const buildCsContent = Buffer.from(buildCsFile.content, "base64").toString("utf8")
 								const { publicDependencies, privateDependencies } = parseBuildCsDependencies(buildCsContent)
-								console.log("publicDependencies", publicDependencies)
 								acc.publicModuleDependencies.push(...publicDependencies)
 								acc.privateModuleDependencies.push(...privateDependencies)
 							}
@@ -198,7 +209,6 @@ export const processPlugin = inngest.createFunction(
 				return { publicModuleDependencies: [], privateModuleDependencies: [] }
 			}
 		})()
-		console.log({ publicModuleDependencies, privateModuleDependencies })
 
 		const { data: uPluginIcon } = await octokit.rest.repos
 			.getContent({

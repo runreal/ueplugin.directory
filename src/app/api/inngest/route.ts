@@ -1,6 +1,6 @@
 import { inngest } from "@/inngest/client"
 import { serve } from "inngest/next"
-import { processPlugin, processPlugins, processPluginCron } from "./functions"
+import { processPlugin, processPluginCron, processPlugins } from "./functions"
 
 // Create an API that serves zero functions
 export const { GET, POST, PUT } = serve({

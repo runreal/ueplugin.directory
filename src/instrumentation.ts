@@ -12,4 +12,9 @@ export async function register() {
 	} catch {
 		// Storage global may be non-configurable in future engines; ignore.
 	}
+
+	if (process.env.NEXT_RUNTIME === "nodejs") {
+		const { getWorld } = await import("workflow/runtime")
+		await getWorld().start?.()
+	}
 }

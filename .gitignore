@@ -36,9 +36,16 @@ yarn-error.log*
 # vercel
 .vercel
 
+# workflow (generated)
+.well-known/workflow
+public/.well-known/workflow
+src/app/.well-known
+.workflow-data
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 .env
 
 !.env.example
+.swc

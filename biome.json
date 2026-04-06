@@ -2,7 +2,7 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "organizeImports": {
     "enabled": true,
-    "ignore": ["node_modules", ".next", "dist", "meta", ".turbo", "routeTree.gen.ts"]
+    "ignore": ["node_modules", ".next", "dist", "meta", ".turbo", "routeTree.gen.ts", ".well-known"]
   },
 
   "linter": {
@@ -36,7 +36,7 @@
         "noForEach": "off"
       }
     },
-    "ignore": ["node_modules", ".next", "dist", "meta", ".turbo", "routeTree.gen.ts"]
+    "ignore": ["node_modules", ".next", "dist", "meta", ".turbo", "routeTree.gen.ts", ".well-known"]
   },
   "formatter": {
     "enabled": true,
@@ -46,7 +46,7 @@
     "indentWidth": 2,
     "lineWidth": 120,
     "lineEnding": "lf",
-    "ignore": ["node_modules", ".next", "dist", "meta", ".turbo", "routeTree.gen.ts"]
+    "ignore": ["node_modules", ".next", "dist", "meta", ".turbo", "routeTree.gen.ts", ".well-known"]
   },
   "javascript": {
     "formatter": {

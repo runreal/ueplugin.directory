@@ -305,7 +305,7 @@ export const PLUGIN_DATA = [
 	"https://github.com/aquanox/SubsystemBrowserPlugin",
 	"https://github.com/maxenko/SodiumUE4",
 	"https://github.com/gameDNAstudio/AndroidManifestConfigurator",
-	"https://github.com/JsonAsAsset/JsonAsAsset",
+	"https://github.com/JsonAsAsset/Reflection",
 	"https://github.com/armabon/UE4_CGAL",
 	"https://github.com/xverse-engine/XV3DGS-UEPlugin",
 	"https://github.com/ANtlord/LegsIKPlugin",
